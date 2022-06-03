@@ -10,16 +10,13 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    authorize @product
   end
 
   def create
     @product = Product.new(product_params)
-    @product.user = current_user
-    authorize @product
 
     if @product.save
-      redirect_to root_path(@product), notice: "L'image a bien été créée"
+      redirect_to products_path(@product), notice: "L'image a bien été créée"
     else
       render :new
     end
@@ -30,7 +27,7 @@ class ProductsController < ApplicationController
 
   def update
     @product.update(product_params)
-    redirect_to product_path(@product), notice: "L'iten a bien été mis à jour"
+    redirect_to product_path(@product), notice: "L'item a bien été mis à jour"
   end
 
   def destroy
@@ -46,7 +43,6 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
-    authorize @product
   end
 
 end

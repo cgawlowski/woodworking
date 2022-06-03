@@ -1,0 +1,41 @@
+<div class="container">  
+  <h3 class="form-group">Veuillez entrer les détails de votre nouvel item</h3>
+
+    <%= form_with model: @product, method: :post do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "Indiquez le nom" %>
+        <%= f.text_field :name, class:"form-control", placeholder:"(champ obligatoire)" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, "Ajoutez une description" %>
+        <%= f.text_area :description, class:"form-control" %>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <%= f.label :category, "Ajoutez une catégorie" %>
+            <%= f.text_field :category, class:"form-control" %>
+          </div>
+          <div class="col">
+            <%= f.label :price, "Indiquez le prix (si nécessaire)" %>
+            <%= f.number_field :price, class:"form-control", placeholder:"0,00$ CAD" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <%= f.label :photos, "Sélectionnez vos images" %>
+              <%= f.file_field :photos, multiple: true, class:"form-control-file" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.submit class:"btn btn-primary btn-lg btn-block" %>
+      </div>
+    <% end %>
+
+  <p><%= link_to 'Back to the main page', root_path %></p>
+</div>
