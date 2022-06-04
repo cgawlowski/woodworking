@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    set_product
   end
 
   def new
@@ -16,23 +16,26 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to products_path(@product), notice: "L'image a bien été créée"
+      redirect_to products_path(@product), notice: "L'item a bien été créée"
     else
       render :new
     end
   end
 
   def edit
+    set_product
   end
 
   def update
+    set_product
     @product.update(product_params)
     redirect_to product_path(@product), notice: "L'item a bien été mis à jour"
   end
 
   def destroy
+    set_product
     @product.destroy
-    redirect_to root_path(@product), notice: "L'item a bien été supprimé"
+    redirect_to products_path(@product), notice: "L'item a bien été supprimé"
   end
 
   private
